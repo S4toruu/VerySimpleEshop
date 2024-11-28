@@ -1,0 +1,17 @@
+.headerDefault {
+  @apply flex p-4 border-b border-grey-cool-200;
+}
+.headerDefault nav {
+  @apply flex items-center;
+}
+.headerDefault > nav:first-of-type {
+  @apply flex-1;
+}
+.headerDefault > nav:first-of-type ul {
+  @apply relative m-auto;
+}
+.headerDefault nav ul li {
+  @apply inline-block px-2;
+}
+
+/*# sourceMappingURL=header.module.css.map */

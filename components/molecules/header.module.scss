@@ -1,0 +1,15 @@
+.headerDefault {
+  @apply flex p-4 border-b border-grey-cool-200;
+  nav {
+    @apply flex items-center;
+  }
+  > nav:first-of-type {
+    @apply flex-1;
+    ul {
+      @apply relative m-auto;
+    }
+  }
+  nav ul li {
+    @apply inline-block px-2;
+  }
+}

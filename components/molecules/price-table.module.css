@@ -1,0 +1,26 @@
+.priceTable h2 {
+  @apply w-full font-bold text-xl mb-4;
+}
+.priceTable > div:first-of-type {
+  @apply border-b-2 border-grey-cool-900;
+}
+.priceTable > div:last-of-type {
+  @apply border-b border-grey-cool-300;
+}
+.priceTable > div:last-of-type span {
+  @apply text-black;
+}
+.priceTable > div:last-of-type span:last-child {
+  @apply text-1xl;
+}
+.priceTable .details {
+  @apply flex pb-5 mb-4;
+}
+.priceTable .details span {
+  @apply text-grey-cool-500 font-rubik;
+}
+.priceTable .details span:first-child {
+  @apply flex-1;
+}
+
+/*# sourceMappingURL=price-table.module.css.map */

@@ -1,0 +1,8 @@
+.notification {
+  @apply fixed top-5 right-[-300px] w-[250px] p-2.5 bg-green text-white text-center rounded-sm shadow-md transition duration-500 ease-in-out;
+}
+.notification.show {
+  @apply right-5;
+}
+
+/*# sourceMappingURL=notification.module.css.map */

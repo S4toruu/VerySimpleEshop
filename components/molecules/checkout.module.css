@@ -1,0 +1,8 @@
+.checkout h1 {
+  @apply text-3xl mb-2;
+}
+.checkout h2 {
+  @apply font-rubik mb-4;
+}
+
+/*# sourceMappingURL=checkout.module.css.map */

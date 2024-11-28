@@ -1,0 +1,22 @@
+.cartDefault {
+  h1 {
+    @apply text-4xl mb-4;
+  }
+  ul {
+    li {
+      @apply flex items-center mb-2 pb-2 border-b border-grey-cool-200;
+    }
+    li:last-child {
+      @apply mb-0 pb-0 border-b-0;
+    }
+  }
+  figure {
+    @apply mr-4;
+  }
+  span {
+    @apply block mb-2;
+  }
+  button {
+    @apply block;
+  }
+}

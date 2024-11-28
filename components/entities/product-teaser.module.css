@@ -1,0 +1,32 @@
+.productTeaser {
+  @apply bg-white shadow-md rounded-md p-4;
+}
+.productTeaser img {
+  @apply mb-4;
+}
+.productTeaser h2 {
+  @apply font-rubik text-xl mb-1;
+}
+.productTeaser h3 {
+  @apply mb-2;
+}
+.productTeaser span {
+  @apply text-2xl font-rubik;
+}
+.productTeaser span.currency {
+  @apply text-[0.8rem] top-[-.5rem] relative;
+}
+.productTeaser .actions {
+  @apply mt-4;
+}
+.productTeaser button {
+  @apply inline-block;
+}
+.productTeaser button:first-of-type {
+  @apply mr-2;
+}
+.productTeaser .rank li {
+  @apply inline-block;
+}
+
+/*# sourceMappingURL=product-teaser.module.css.map */

@@ -1,0 +1,32 @@
+.productTeaser {
+  @apply bg-white shadow-md rounded-md p-4;
+  img {
+    @apply mb-4;
+  }
+  h2 {
+    @apply font-rubik text-xl mb-1;
+  }
+  h3 {
+    @apply mb-2;
+  }
+  span {
+    @apply text-2xl font-rubik;
+    &.currency {
+      @apply text-[0.8rem] top-[-.5rem] relative;
+    }
+  }
+  .actions {
+    @apply mt-4;
+  }
+  button {
+    @apply inline-block;
+    &:first-of-type {
+      @apply mr-2;
+    }
+  }
+  .rank {
+    li {
+      @apply inline-block;
+    }
+  }
+}
