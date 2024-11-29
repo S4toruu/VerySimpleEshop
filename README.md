@@ -1,6 +1,6 @@
 # Project Overview
 
-A test project using Next.js, React, and Prisma to create a product listing page with add-to-cart functionality and checkout.
+This project is built using a variety of modern web development technologies. Below is a list of the main technologies used in this project:
 
 ## Technologies Used
 
@@ -58,7 +58,12 @@ Follow these steps to set up and run the project locally:
     npx prisma generate
     ```
 
-8. **Run the Development Server**:
+8. **Seed the Database**:
+    ```sh
+    npx prisma db seed
+    ```
+
+9. **Run the Development Server**:
     ```sh
     npm run dev
     ```
