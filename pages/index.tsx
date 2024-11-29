@@ -11,10 +11,10 @@ export default function IndexPage({ products }: IndexPageProps) {
   return (
     <Layout>
       <Head>
-        <title>Next.js for Drupal</title>
+        <title>My VerySimpleEshop</title>
         <meta
           name="description"
-          content="A Next.js site powered by a Drupal backend."
+          content="A Next.js site powered by My VerySimpleEshop."
         />
       </Head>
       <div />
