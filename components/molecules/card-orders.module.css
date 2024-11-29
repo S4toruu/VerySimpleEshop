@@ -1,0 +1,29 @@
+.tableOrders h1 {
+  @apply text-3xl mb-2;
+}
+.tableOrders h2 {
+  @apply font-rubik mb-4;
+}
+.tableOrders > div {
+  @apply mb-6;
+}
+.tableOrders > table {
+  @apply w-full text-sm text-left rtl:text-right text-grey-cool-500;
+}
+.tableOrders > table thead {
+  @apply text-xs text-grey-cool-700 uppercase bg-grey-cool-100;
+}
+.tableOrders > table thead tr {
+  @apply bg-grey-cool-100;
+}
+.tableOrders > table tr {
+  @apply bg-white border-b border-grey-cool-100;
+}
+.tableOrders > table td {
+  @apply px-6 py-4;
+}
+.tableOrders > table th {
+  @apply px-6 py-4 font-medium text-grey-cool-900 whitespace-nowrap;
+}
+
+/*# sourceMappingURL=card-orders.module.css.map */
