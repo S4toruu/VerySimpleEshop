@@ -38,13 +38,17 @@ export function CardOrders() {
     <div className={styles.tableOrders}>
       <h1>Account</h1>
       <h2>Your address</h2>
-      {address && (
+      {address ? (
         <div>
           <p>{address[0].street}</p>
           <p>{address[0].city}</p>
           <p>{address[0].state}</p>
           <p>{address[0].zipCode}</p>
           <p>{address[0].country}</p>
+        </div>
+      ) : (
+        <div>
+          <p>No address found</p>
         </div>
       )}
       <h2>Your orders</h2>
