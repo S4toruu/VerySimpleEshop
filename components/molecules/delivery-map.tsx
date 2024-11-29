@@ -22,44 +22,48 @@ export function DeliveryMap() {
   const [order, setOrder] = useState(null)
   const [address, setAddress] = useState(null)
   const [coordinates, setCoordinates] = useState({ lat: -3.745, lng: -38.523 })
+
   useEffect(() => {
-    setStep(3)
     const fetchOrder = async () => {
       if (router.query.id && !order) {
         const res = await fetch(`/api/order/${router.query.id}`)
-        setOrder(await res.json())
-      }
-    }
-    fetchOrder()
-  }, [router, order, setStep])
-  useEffect(() => {
-    if (order) {
-      const fetchAddress = async () => {
-        const res = await fetch(`/api/address/${order.order.userId}`)
-        const data = await res.json()
-        setAddress(data.result[0])
-      }
-      fetchAddress()
-    }
-  }, [order])
-  useEffect(() => {
-    if (address) {
-      const fetchCoordinates = async () => {
-        const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address.street},${address.city},${address.state},${address.zipCode},${address.country}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`)
-        const data = await res.json()
-        if (data.results.length > 0) {
-          setCoordinates(data.results[0].geometry.location)
+        const orderData = await res.json()
+        setOrder(orderData)
+
+        const addressRes = await fetch(`/api/address/${orderData.order.userId}`)
+        const addressData = await addressRes.json()
+        setAddress(addressData.result[0])
+
+        const coordinatesRes = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${addressData.result[0].street},${addressData.result[0].city},${addressData.result[0].state},${addressData.result[0].zipCode},${addressData.result[0].country}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`)
+        const coordinatesData = await coordinatesRes.json()
+        if (coordinatesData.results.length > 0) {
+          setCoordinates(coordinatesData.results[0].geometry.location)
         }
       }
-      fetchCoordinates()
     }
-  }, [address])
+    console.log('--- useEffect ---')
+    setStep(3)
+    fetchOrder()
+  }, [router.query.id, order, setStep])
 
   const pathCoordinates = [shopCoordinates, coordinates]
 
   return (
     <div className={styles.deliveryMap}>
       <h1>Your order is being prepared!</h1>
+      {address && (
+        <p>
+          {address.street}
+          ,
+          {address.city}
+          ,
+          {address.state}
+          ,
+          {address.zipCode}
+          ,
+          {address.country}
+        </p>
+      )}
       <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
         <GoogleMap
           mapContainerStyle={containerStyle}

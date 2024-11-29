@@ -9,7 +9,7 @@ import styles from './checkout.module.css'
 export function Checkout() {
   const { setStep, setShippingAddress, setIsShippingAddressNew } = useCart()
   const [session, setSession] = useState(null)
-  const [address, setAddress] = useState([])
+  const [address, setAddress] = useState(null)
   const [name, setName] = useState('')
   const [street, setStreet] = useState('')
   const [search, setSearch] = useState('')
@@ -19,31 +19,33 @@ export function Checkout() {
   const [country, setCountry] = useState('')
 
   useEffect(() => {
-    setStep(2)
     const fetchSession = async () => {
       const sess = await getSession()
       setSession(sess)
     }
-    if (!session) {
-      fetchSession()
-    }
-  })
 
-  useEffect(() => {
     const fetchAddress = async () => {
       if (!session) return
-      const res = await fetch(`/api/address/${session.id}`)
-      const data = await res.json()
-      setAddress(data.result)
-      if (data.result.length > 0) {
-        setIsShippingAddressNew(false)
-        setShippingAddress(data.result[0])
-      } else {
-        setIsShippingAddressNew(true)
+      if (!address) {
+        const res = await fetch(`/api/address/${session.id}`)
+        const data = await res.json()
+        setAddress(data.result)
+        if (data.result.length > 0) {
+          setIsShippingAddressNew(false)
+          setShippingAddress(data.result[0])
+        } else {
+          setIsShippingAddressNew(true)
+        }
       }
     }
-    fetchAddress()
-  }, [session, setIsShippingAddressNew, setShippingAddress])
+
+    setStep(2)
+    if (!session) {
+      fetchSession()
+    } else {
+      fetchAddress()
+    }
+  }, [session, address, setStep, setIsShippingAddressNew, setShippingAddress])
 
   useEffect(() => {
     setShippingAddress({
@@ -111,7 +113,7 @@ export function Checkout() {
           <CardLogin type="checkout" callback="/order/checkout" />
         </>
       )}
-      {address.length === 0 ? (
+      {!address ? (
         <>
           {session && !session.user.name && (
             <div className="formElement">
