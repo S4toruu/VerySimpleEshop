@@ -10,7 +10,7 @@ export function PriceTable() {
   const router = useRouter()
   const [session, setSession] = useState(null)
   const {
-    cart, step, shippingAddress, isShippingAddressNew, clearCart
+    cart, step, shippingAddress, isShippingAddressNew, clearCart, order
   } = useCart()
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function PriceTable() {
     if (!session) {
       fetchSession()
     }
-  })
+  }, [session, setSession])
 
   const proceedCheckout = async (): Promise<any> => {
     if (isShippingAddressNew) {
@@ -54,19 +54,31 @@ export function PriceTable() {
       <h2>Order summary</h2>
       <div className={styles.details}>
         <span>Products prices</span>
-        <span>
-          {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
-          {' '}
-          €
-        </span>
+        {!order ? (
+          <span>
+            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)} €
+          </span>
+        ) : (
+          <span>
+            {order.order.total.toFixed(2)}
+            {' '}
+            €
+          </span>
+        )}
       </div>
       <div className={styles.details}>
         <span>Total with VAT</span>
-        <span>
-          {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
-          {' '}
-          €
-        </span>
+        {!order ? (
+          <span>
+            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)} €
+          </span>
+        ) : (
+          <span>
+            {order.order.total.toFixed(2)}
+            {' '}
+            €
+          </span>
+        )}
       </div>
       {step === 2 && (
         <Button

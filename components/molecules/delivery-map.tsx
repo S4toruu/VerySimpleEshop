@@ -3,8 +3,8 @@ import {
 } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useCart } from 'utils/cart-context'
 import styles from './delivery-map.module.css'
-import { useCart } from '../../utils/cart-context'
 
 const containerStyle = {
   width: '100%',
@@ -17,9 +17,8 @@ const shopCoordinates = {
 }
 
 export function DeliveryMap() {
-  const { setStep } = useCart()
+  const { setStep, order, setOrder } = useCart()
   const router = useRouter()
-  const [order, setOrder] = useState(null)
   const [address, setAddress] = useState(null)
   const [coordinates, setCoordinates] = useState({ lat: -3.745, lng: -38.523 })
 
@@ -41,10 +40,9 @@ export function DeliveryMap() {
         }
       }
     }
-    console.log('--- useEffect ---')
     setStep(3)
     fetchOrder()
-  }, [router.query.id, order, setStep])
+  }, [router.query.id, order, setOrder, setStep])
 
   const pathCoordinates = [shopCoordinates, coordinates]
 
@@ -52,17 +50,14 @@ export function DeliveryMap() {
     <div className={styles.deliveryMap}>
       <h1>Your order is being prepared!</h1>
       {address && (
-        <p>
-          {address.street}
-          ,
-          {address.city}
-          ,
-          {address.state}
-          ,
-          {address.zipCode}
-          ,
-          {address.country}
-        </p>
+        <div className="mb-5">
+          <h2>From our warehouse in Nantes to your address:</h2>
+          <p>{address.street}</p>
+          <p>{address.city}</p>
+          <p>{address.state}</p>
+          <p>{address.zipCode}</p>
+          <p>{address.country}</p>
+        </div>
       )}
       <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
         <GoogleMap

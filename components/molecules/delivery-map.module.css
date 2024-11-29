@@ -1,5 +1,8 @@
 .deliveryMap h1 {
   @apply text-3xl mb-4;
 }
+.deliveryMap h2 {
+  @apply text-1xl mb-2;
+}
 
 /*# sourceMappingURL=delivery-map.module.css.map */
