@@ -56,11 +56,16 @@ export function PriceTable() {
         <span>Products prices</span>
         {!order ? (
           <span>
-            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)} €
+            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+            {' '}
+            €
           </span>
         ) : (
           <span>
-            {order.order.total.toFixed(2)}
+            {
+              // @ts-ignore
+              order.order.total.toFixed(2)
+            }
             {' '}
             €
           </span>
@@ -70,11 +75,16 @@ export function PriceTable() {
         <span>Total with VAT</span>
         {!order ? (
           <span>
-            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)} €
+            {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+            {' '}
+            €
           </span>
         ) : (
           <span>
-            {order.order.total.toFixed(2)}
+            {
+              // @ts-ignore
+              order.order.total.toFixed(2)
+            }
             {' '}
             €
           </span>
