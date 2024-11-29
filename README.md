@@ -1,15 +1,66 @@
-# Basic Starter
+# Project Overview
 
-A simple starter for building your site with Next.js and Drupal.
+A test project using Next.js, React, and Prisma to create a product listing page with add-to-cart functionality and checkout.
 
-## How to use
+## Technologies Used
 
-`npx create-next-app -e https://github.com/chapter-three/next-drupal-basic-starter`
+- **TypeScript**
+- **Next.js**
+- **Tailwind CSS**
+- **Prisma**
+- **MariaDB**
+- **DDEV**
+- **Docker**
 
-## Deploy to Vercel
+## Getting Started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchapter-three%2Fnext-drupal-basic-starter&env=NEXT_PUBLIC_DRUPAL_BASE_URL,NEXT_IMAGE_DOMAIN,DRUPAL_PREVIEW_SECRET,DRUPAL_CLIENT_ID,DRUPAL_CLIENT_SECRET&envDescription=Learn%20more%20about%20environment%20variables&envLink=https%3A%2F%2Fnext-drupal.org%2Fdocs%2Fenvironment-variables&project-name=next-drupal&demo-title=Next.js%20for%20Drupal&demo-description=A%20next-generation%20front-end%20for%20your%20Drupal%20site.&demo-url=https%3A%2F%2Fdemo.next-drupal.org&demo-image=https%3A%2F%2Fnext-drupal.org%2Fimages%2Fdemo-screenshot.jpg)
+Follow these steps to set up and run the project locally:
 
-## Documentation
+### Prerequisites
 
-See https://next-drupal.org
+1. **Download and Install Docker Desktop**: [Docker Desktop](https://www.docker.com/products/docker-desktop)
+2. **Download and Install DDEV**: [DDEV](https://ddev.readthedocs.io/en/stable/#installation)
+
+### Steps to Run the Project
+
+1. **Clone the Repository**:
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2. **Edit the `.env.local` and `.env` Files**:
+    - Copy the `.env.example` file to `.env.local` and `.env`
+    - Update the database connection string and other environment variables as needed
+
+3. **Use Node Version Manager (NVM)**:
+    ```sh
+    nvm use
+    ```
+
+4. **Install Dependencies**:
+    ```sh
+    npm install
+    ```
+
+5. **Start DDEV**:
+    ```sh
+    ddev start
+    ```
+
+6. **Run Prisma Migrations**:
+    ```sh
+    npx prisma migrate dev --name init
+    ```
+
+7. **Generate Prisma Client**:
+    ```sh
+    npx prisma generate
+    ```
+
+8. **Run the Development Server**:
+    ```sh
+    npm run dev
+    ```
+
+Your project should now be running locally. Open your browser and navigate to `http://localhost:3000` to see the application in action.
