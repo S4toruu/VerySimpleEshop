@@ -1,7 +1,7 @@
 import React, {
   createContext, useContext, useState, ReactNode, FC, useMemo, useEffect
 } from 'react'
-import { Product } from '@prisma/client'
+import { Product, Order } from '@prisma/client'
 
 interface CartItem extends Product {
   quantity: number
@@ -18,6 +18,8 @@ interface CartContextProps {
   setShippingAddress: (address: Address) => void
   isShippingAddressNew: boolean | null
   setIsShippingAddressNew: (isShippingAddressNew: boolean) => void
+  order: Order | null
+  setOrder: (order: Order) => void
 }
 
 interface Address {
@@ -37,6 +39,7 @@ interface CartProviderProps {
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([])
   const [step, setStep] = useState<number>(0)
+  const [order, setOrder] = useState<Order | null>(null)
   const [shippingAddress, setShippingAddress] = useState<Address | null>(null)
   const [isShippingAddressNew, setIsShippingAddressNew] = useState<boolean | null>(null)
 
@@ -85,8 +88,10 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     shippingAddress,
     setShippingAddress,
     setIsShippingAddressNew,
-    isShippingAddressNew
-  }), [cart, step, shippingAddress, isShippingAddressNew])
+    isShippingAddressNew,
+    order,
+    setOrder
+  }), [cart, step, shippingAddress, isShippingAddressNew, order, setOrder])
 
   return (
     <CartContext.Provider value={value}>
