@@ -10,6 +10,7 @@ import styles from './product-teaser.module.css'
 
 interface ProductTeaserProps {
   product: Product
+  // eslint-disable-next-line no-unused-vars
   onAddToCart: (product: Product) => void
 }
 
