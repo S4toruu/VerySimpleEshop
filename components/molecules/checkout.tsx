@@ -1,22 +1,30 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { getSession } from 'next-auth/react'
+import { getSession, Session } from 'next-auth/react'
 import debounce from 'lodash/debounce'
 import { useCart } from 'utils/cart-context'
 
 import { CardLogin } from 'components/molecules/card-login'
 import styles from './checkout.module.css'
 
+interface Address {
+  street: string
+  city: string
+  state: string
+  zipCode: string
+  country: string
+}
+
 export function Checkout() {
   const { setStep, setShippingAddress, setIsShippingAddressNew } = useCart()
-  const [session, setSession] = useState(null)
-  const [address, setAddress] = useState(null)
-  const [name, setName] = useState('')
-  const [street, setStreet] = useState('')
-  const [search, setSearch] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zipCode, setZipCode] = useState('')
-  const [country, setCountry] = useState('')
+  const [session, setSession] = useState<Session | null>(null)
+  const [address, setAddress] = useState<Address | null>(null)
+  const [name, setName] = useState<string>('')
+  const [street, setStreet] = useState<string>('')
+  const [search, setSearch] = useState<string>('')
+  const [city, setCity] = useState<string>('')
+  const [state, setState] = useState<string>('')
+  const [zipCode, setZipCode] = useState<string>('')
+  const [country, setCountry] = useState<string>('')
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -85,7 +93,6 @@ export function Checkout() {
     }
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedFetchGoogleAddress = useCallback(debounce((value: string) => {
     fetchGoogleAddress(value)
   }, 300), [])
@@ -260,11 +267,11 @@ export function Checkout() {
         <>
           <h2>Your address is:</h2>
           <div>
-            <p>{address[0].street}</p>
-            <p>{address[0].city}</p>
-            <p>{address[0].state}</p>
-            <p>{address[0].zipCode}</p>
-            <p>{address[0].country}</p>
+            <p>{address.street}</p>
+            <p>{address.city}</p>
+            <p>{address.state}</p>
+            <p>{address.zipCode}</p>
+            <p>{address.country}</p>
           </div>
         </>
       )}

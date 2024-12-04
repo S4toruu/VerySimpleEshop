@@ -11,8 +11,8 @@ interface CardLoginProps {
 }
 
 export function CardLogin({ type, callback }: CardLoginProps) {
-  const [mail, setMail] = useState('')
-  const [password, setPassword] = useState('')
+  const [mail, setMail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const router = useRouter()
 
   const classes = [styles.cardLogin]
