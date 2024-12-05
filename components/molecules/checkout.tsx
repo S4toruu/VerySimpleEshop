@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { getSession, Session } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
+import { Session } from 'next-auth'
 import debounce from 'lodash/debounce'
 import { useCart } from 'utils/cart-context'
 
@@ -268,11 +269,11 @@ export function Checkout() {
         <>
           <h2>Your address is:</h2>
           <div>
-            <p>{address.street}</p>
-            <p>{address.city}</p>
-            <p>{address.state}</p>
-            <p>{address.zipCode}</p>
-            <p>{address.country}</p>
+            <p>{address[0].street}</p>
+            <p>{address[0].city}</p>
+            <p>{address[0].state}</p>
+            <p>{address[0].zipCode}</p>
+            <p>{address[0].country}</p>
           </div>
         </>
       )}
