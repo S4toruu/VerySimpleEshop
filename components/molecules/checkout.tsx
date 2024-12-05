@@ -93,6 +93,7 @@ export function Checkout() {
     }
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedFetchGoogleAddress = useCallback(debounce((value: string) => {
     fetchGoogleAddress(value)
   }, 300), [])
