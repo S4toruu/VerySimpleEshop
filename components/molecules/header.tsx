@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useCart } from 'utils/cart-context'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import Icon from '@mdi/react'
 import { mdiShopping, mdiAccount } from '@mdi/js'
 
@@ -42,9 +43,9 @@ export function Header() {
       </figure>
       <nav>
         <ul>
-          <li><a href="/products">Smartphones</a></li>
-          <li><a href="/products">Screens</a></li>
-          <li><a href="/products">Laptops</a></li>
+          <li><Link href="/products">Smartphones</Link></li>
+          <li><Link href="/products">Screens</Link></li>
+          <li><Link href="/products">Laptops</Link></li>
         </ul>
       </nav>
       <nav>
@@ -57,11 +58,11 @@ export function Header() {
                 {totalQuantity}
               </span>
             )}
-            <a href="/order">
+            <Link href="/order">
               <Icon path={mdiShopping} size={1} />
-            </a>
+            </Link>
           </li>
-          <li><a href="/account"><Icon path={mdiAccount} size={1} /></a></li>
+          <li><Link href="/account"><Icon path={mdiAccount} size={1} /></Link></li>
         </ul>
       </nav>
     </header>
