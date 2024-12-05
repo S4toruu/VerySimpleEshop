@@ -4,13 +4,13 @@ import Head from 'next/head'
 import { Layout } from 'components/layout'
 import { ProductTeaser } from 'components/entities/product-teaser'
 import { Notification } from 'components/molecules/notification'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Product } from '@prisma/client'
 import { useCart } from 'utils/cart-context'
 
 const prisma = new PrismaClient()
 
 interface ProductsProps {
-  products: any[]
+  products: Product[]
 }
 
 export default function Products({ products }: ProductsProps) {
@@ -50,8 +50,17 @@ export default function Products({ products }: ProductsProps) {
   )
 }
 
-export async function getServerSideProps(): Promise<GetServerSidePropsResult<ProductsProps>> {
-  const products = await prisma.product.findMany()
+export async function getServerSideProps(context): Promise<GetServerSidePropsResult<ProductsProps>> {
+  let products = []
+  if (context.query.type) {
+    products = await prisma.product.findMany({
+      where: {
+        type: context.query.type
+      }
+    })
+  } else {
+    products = await prisma.product.findMany()
+  }
 
   return {
     props: {
