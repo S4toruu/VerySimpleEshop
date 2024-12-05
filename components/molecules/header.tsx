@@ -43,9 +43,10 @@ export function Header() {
       </figure>
       <nav>
         <ul>
-          <li><Link href="/products">Smartphones</Link></li>
-          <li><Link href="/products">Screens</Link></li>
-          <li><Link href="/products">Laptops</Link></li>
+          <li><Link href="/products">All products</Link></li>
+          <li><Link href="/products?type=smartphone">Smartphones</Link></li>
+          <li><Link href="/products?type=screen">Screens</Link></li>
+          <li><Link href="/products?type=laptop">Laptops</Link></li>
         </ul>
       </nav>
       <nav>
